@@ -1,0 +1,119 @@
+{% extends "base.html" %}
+{% block title %}Smart Mart — Intelligent Retail Platform{% endblock %}
+{% block body %}
+<!-- ═══ NAVBAR ═══ -->
+<nav class="navbar-main">
+    <a class="logo" href="/"><div class="logo-icon"><i class="fas fa-bolt"></i></div>Smart Mart</a>
+    <div class="nav-links">
+        <a href="/store" class="nav-link-pill"><i class="fas fa-bag-shopping"></i> Store</a>
+        <a href="/manager" class="nav-link-pill"><i class="fas fa-chart-pie"></i> Dashboard</a>
+        <a href="/customer" class="nav-link-pill"><i class="fas fa-user"></i> Portal</a>
+        <a href="/cashier" class="nav-link-pill brand-fill"><i class="fas fa-cash-register"></i> Open POS</a>
+    </div>
+</nav>
+
+<!-- ═══ HERO ═══ -->
+<section class="hero-section">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6 mb-5 mb-lg-0">
+                <div class="d-flex gap-2 mb-4 flex-wrap anim-up">
+                    <span class="hero-chip"><span class="dot"></span> System Online</span>
+                    <span class="hero-chip"><i class="fas fa-database" style="font-size:10px;color:var(--accent)"></i> 9 Tables · 3NF</span>
+                    <span class="hero-chip"><i class="fas fa-microchip" style="font-size:10px;color:var(--brand)"></i> AI Engine</span>
+                </div>
+                <h1 class="hero-title anim-up anim-d1">Next-Gen<br><span class="text-gradient">Retail Intelligence</span></h1>
+                <p class="hero-sub mt-3 mb-4 anim-up anim-d2">Full-stack ERP with real-time POS, predictive analytics, collaborative filtering recommendations, and automated inventory management.</p>
+                <div class="d-flex gap-3 flex-wrap anim-up anim-d3">
+                    <a href="/store" class="btn btn-success btn-lg rounded-pill px-4 fw-bold" style="padding:13px 28px!important">
+                        <i class="fas fa-rocket me-2"></i>Explore Store
+                    </a>
+                    <a href="/manager" class="btn rounded-pill px-4 fw-bold" style="padding:13px 28px!important;background:rgba(255,255,255,.08);color:#fff;border:1px solid rgba(255,255,255,.15)!important">
+                        <i class="fas fa-chart-line me-2"></i>View Analytics
+                    </a>
+                </div>
+                <div class="d-flex gap-2 flex-wrap mt-4 anim-up anim-d4">
+                    <span class="hero-chip" style="font-size:.72rem"><i class="fab fa-python" style="color:#3776ab;font-size:11px"></i> Flask 3.x</span>
+                    <span class="hero-chip" style="font-size:.72rem"><i class="fas fa-database" style="color:#00758f;font-size:10px"></i> MySQL 8.0</span>
+                    <span class="hero-chip" style="font-size:.72rem"><i class="fab fa-bootstrap" style="color:#7952b3;font-size:11px"></i> Bootstrap 5</span>
+                    <span class="hero-chip" style="font-size:.72rem"><i class="fab fa-js" style="color:#f7df1e;font-size:11px"></i> Vanilla JS</span>
+                </div>
+            </div>
+            <div class="col-lg-5 offset-lg-1">
+                <div class="row g-3">
+                    <div class="col-6 anim-up anim-d1">
+                        <a href="/cashier" class="module-card">
+                            <div class="mc-icon" style="background:linear-gradient(135deg,#6366f1,#4338ca)"><i class="fas fa-cash-register"></i></div>
+                            <h6 class="mb-1" style="font-size:.88rem">POS Terminal</h6>
+                            <small style="font-size:.72rem">Barcode scan & receipts</small>
+                        </a>
+                    </div>
+                    <div class="col-6 anim-up anim-d2" style="margin-top:32px">
+                        <a href="/manager" class="module-card">
+                            <div class="mc-icon" style="background:linear-gradient(135deg,#10b981,#047857)"><i class="fas fa-chart-pie"></i></div>
+                            <h6 class="mb-1" style="font-size:.88rem">Analytics Hub</h6>
+                            <small style="font-size:.72rem">Forecasting & reports</small>
+                        </a>
+                    </div>
+                    <div class="col-6 anim-up anim-d3">
+                        <a href="/store" class="module-card">
+                            <div class="mc-icon" style="background:linear-gradient(135deg,#8b5cf6,#6d28d9)"><i class="fas fa-store"></i></div>
+                            <h6 class="mb-1" style="font-size:.88rem">E-Commerce</h6>
+                            <small style="font-size:.72rem">Browse & checkout</small>
+                        </a>
+                    </div>
+                    <div class="col-6 anim-up anim-d4" style="margin-top:32px">
+                        <a href="/customer" class="module-card">
+                            <div class="mc-icon" style="background:linear-gradient(135deg,#f59e0b,#d97706)"><i class="fas fa-user-shield"></i></div>
+                            <h6 class="mb-1" style="font-size:.88rem">Customer AI</h6>
+                            <small style="font-size:.72rem">Loyalty & suggestions</small>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══ FEATURES ═══ -->
+<section class="features-section">
+    <div class="container">
+        <div class="text-center mb-5">
+            <span class="badge bg-success bg-opacity-10 text-success border border-success border-opacity-25 rounded-pill px-3 py-2 mb-3" style="font-size:.75rem">Architecture</span>
+            <h2 class="fw-bold" style="font-size:1.8rem">Enterprise-Grade Engineering</h2>
+            <p class="text-muted mx-auto" style="max-width:460px;font-size:.92rem">Built with industry best practices for scalability, security, and maintainability.</p>
+        </div>
+        <div class="row g-4">
+            <div class="col-md-4 anim-up">
+                <div class="feature-block hover-lift card border-0 h-100 py-4">
+                    <div class="feature-icon" style="background:rgba(99,102,241,.1);color:var(--indigo)"><i class="fas fa-project-diagram"></i></div>
+                    <h6 class="fw-bold">Normalized Schema</h6>
+                    <p class="text-muted small mb-0 px-2">9 tables in 3NF with PKs, FKs, CHECK constraints, triggers, views, and covering indexes.</p>
+                </div>
+            </div>
+            <div class="col-md-4 anim-up anim-d1">
+                <div class="feature-block hover-lift card border-0 h-100 py-4">
+                    <div class="feature-icon" style="background:rgba(16,185,129,.1);color:var(--brand)"><i class="fas fa-brain"></i></div>
+                    <h6 class="fw-bold">SQL AI Engine</h6>
+                    <p class="text-muted small mb-0 px-2">Collaborative filtering and demand forecasting powered by pure relational algebra queries.</p>
+                </div>
+            </div>
+            <div class="col-md-4 anim-up anim-d2">
+                <div class="feature-block hover-lift card border-0 h-100 py-4">
+                    <div class="feature-icon" style="background:rgba(139,92,246,.1);color:var(--accent)"><i class="fas fa-shield-alt"></i></div>
+                    <h6 class="fw-bold">Secure REST API</h6>
+                    <p class="text-muted small mb-0 px-2">6 modular blueprints with parameterized queries, input validation, and proper HTTP semantics.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══ FOOTER ═══ -->
+<footer class="landing-footer">
+    <div class="container">
+        <p class="mb-1"><span class="f-brand"><i class="fas fa-bolt me-1"></i>Smart Mart</span> ERP System</p>
+        <p class="small mb-0 opacity-75">Full-Stack Database Systems Project · 2026</p>
+    </div>
+</footer>
+{% endblock %}

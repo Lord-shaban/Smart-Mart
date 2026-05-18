@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+{% block title %}Smart Mart — Store{% endblock %}
+{% block body %}
+<nav class="navbar-main">
+    <a class="logo" href="/"><div class="logo-icon"><i class="fas fa-bolt"></i></div>Smart Mart</a>
+    <div class="nav-links">
+        <div id="authArea"><button class="nav-link-pill" data-bs-toggle="modal" data-bs-target="#loginModal"><i class="fas fa-user"></i> Sign In</button></div>
+        <button class="nav-link-pill position-relative" onclick="toggleCart()" style="border:none;background:transparent">
+            <i class="fas fa-bag-shopping"></i> Cart
+            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" id="cartCount" style="padding:3px 6px;font-size:.6rem">0</span>
+        </button>
+    </div>
+</nav>
+<div class="page-shell">
+    <div class="store-banner anim-up">
+        <span class="badge bg-success bg-opacity-10 text-success border border-success border-opacity-25 rounded-pill px-3 py-2 mb-3" style="font-size:.72rem"><i class="fas fa-sparkles me-1"></i> Fresh Daily</span>
+        <h1 class="fw-bold mb-2" style="font-size:2rem;letter-spacing:-.03em">Premium Quality Products</h1>
+        <p class="text-muted mb-4" style="font-size:.92rem">Shop 45+ products with intelligent AI recommendations.</p>
+        <div class="mx-auto" style="max-width:440px;position:relative">
+            <input type="text" id="searchInput" class="form-control form-control-lg rounded-pill border-0 ps-4 pe-5" style="background:var(--surface);box-shadow:var(--shadow-md)" placeholder="Search products..." oninput="renderProducts()">
+            <i class="fas fa-search position-absolute top-50 end-0 translate-middle-y me-4 text-muted"></i>
+        </div>
+    </div>
+    <div class="d-flex justify-content-between align-items-center mt-4 mb-2">
+        <h5 class="fw-bold mb-0" style="font-size:1rem">Catalog <span class="text-muted fw-normal" id="prodCountLabel" style="font-size:.82rem"></span></h5>
+    </div>
+    <div class="cat-scroll mb-3">
+        <button class="cat-pill active" onclick="setCategory('All')">🚀 All</button>
+        <button class="cat-pill" onclick="setCategory('Beverages')">☕ Beverages</button>
+        <button class="cat-pill" onclick="setCategory('Snacks')">🍪 Snacks</button>
+        <button class="cat-pill" onclick="setCategory('Dairy')">🧀 Dairy</button>
+        <button class="cat-pill" onclick="setCategory('Produce')">🍎 Produce</button>
+        <button class="cat-pill" onclick="setCategory('Meat')">🥩 Meat</button>
+        <button class="cat-pill" onclick="setCategory('Bakery')">🥐 Bakery</button>
+        <button class="cat-pill" onclick="setCategory('Household')">🧹 Household</button>
+    </div>
+    <div class="row g-3" id="productGrid"></div>
+</div>
+
+<!-- Login Modal -->
+<div class="modal fade" id="loginModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered modal-sm">
+        <div class="modal-content" style="padding:8px">
+            <div class="modal-header border-0 pb-0"><h5 class="modal-title fw-bold" style="font-size:1.05rem">Welcome Back</h5><button type="button" class="btn-close" data-bs-dismiss="modal"></button></div>
+            <div class="modal-body pt-2">
+                <p class="text-muted" style="font-size:.84rem">Enter Customer ID (1–100) to link loyalty.</p>
+                <input type="number" id="loginId" class="form-control form-control-lg mb-3" style="background:var(--bg);border:none" placeholder="Customer ID (e.g. 35)">
+                <div id="loginError" class="text-danger small mb-3 d-none"><i class="fas fa-exclamation-circle me-1"></i>Invalid ID</div>
+                <button class="btn btn-success btn-lg w-100 rounded-pill fw-bold" onclick="processLogin()">Sign In <i class="fas fa-arrow-right ms-2"></i></button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Cart -->
+<div class="overlay" id="cartOverlay" onclick="toggleCart()"></div>
+<div class="cart-panel" id="cartSidebar">
+    <div class="p-3 d-flex justify-content-between align-items-center" style="border-bottom:1px solid var(--border)">
+        <h6 class="mb-0 fw-bold"><i class="fas fa-bag-shopping text-brand me-2"></i>My Cart</h6>
+        <button class="btn-close" onclick="toggleCart()"></button>
+    </div>
+    <div class="flex-grow-1 overflow-auto px-3 py-2" id="cartItems"></div>
+    <div class="p-3" style="border-top:1px solid var(--border);background:var(--bg)">
+        <div class="d-flex justify-content-between mb-3 fw-bold" style="font-size:1.1rem">
+            <span>Total</span>
+            <span class="text-brand">$<span id="cartTotal">0.00</span></span>
+        </div>
+        <button class="btn btn-dark btn-lg w-100 rounded-pill fw-bold" onclick="checkout()">Checkout <i class="fas fa-lock ms-2"></i></button>
+    </div>
+</div>
+{% endblock %}
+{% block extra_js %}<script src="/static/js/store.js"></script>{% endblock %}

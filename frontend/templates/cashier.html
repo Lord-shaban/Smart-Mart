@@ -1,0 +1,86 @@
+{% extends "base.html" %}
+{% block title %}Smart Mart — POS Terminal{% endblock %}
+{% block body %}
+<div id="toastContainer" class="toast-box"></div>
+<nav class="navbar-main">
+    <a class="logo" href="/"><div class="logo-icon"><i class="fas fa-bolt"></i></div>Smart Mart<span class="logo-badge">POS</span></a>
+    <div class="nav-links">
+        <select id="cashierSelect" class="form-select form-select-sm" style="max-width:170px;background:var(--dark3);border-color:var(--dark3);color:#fff;font-size:.78rem;padding:5px 10px;border-radius:8px"></select>
+        <span class="nav-clock"><i class="far fa-clock"></i><span id="liveClock"></span></span>
+        <a href="/manager" class="nav-link-pill"><i class="fas fa-chart-pie"></i> Dashboard</a>
+        <a href="/" class="nav-link-pill"><i class="fas fa-home"></i></a>
+    </div>
+</nav>
+<div class="page-shell" style="padding-top:20px;padding-bottom:20px">
+    <div class="row g-3">
+        <div class="col-lg-4">
+            <div class="card mb-3 anim-up">
+                <div class="card-header"><i class="fas fa-barcode text-brand"></i> Product Search</div>
+                <div class="card-body" style="padding:16px 20px">
+                    <div class="input-group">
+                        <input type="text" class="form-control form-control-lg" id="barcodeInput" placeholder="Scan barcode (e.g. BC0001)" onkeypress="if(event.key==='Enter')addProduct()" autofocus>
+                        <button class="btn btn-success" onclick="addProduct()"><i class="fas fa-plus"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="card mb-3 anim-up anim-d1">
+                <div class="card-header"><i class="fas fa-user-tag text-info"></i> Customer Lookup <span class="text-muted fw-normal ms-1" style="font-size:.75rem">(optional)</span></div>
+                <div class="card-body" style="padding:16px 20px">
+                    <div class="input-group mb-2">
+                        <input type="text" class="form-control" id="customerPhone" placeholder="Phone (e.g. 555-2001)" onkeypress="if(event.key==='Enter')findCustomer()">
+                        <button class="btn btn-info" onclick="findCustomer()"><i class="fas fa-search"></i></button>
+                    </div>
+                    <div id="customerAlert" class="alert alert-secondary d-none py-2 mb-0" style="font-size:.84rem;border-radius:var(--r)"></div>
+                </div>
+            </div>
+            <div class="card anim-up anim-d2">
+                <div class="card-body text-center" style="padding:24px 20px">
+                    <div class="total-box mb-3">$<span id="totalAmount">0.00</span></div>
+                    <label class="form-label text-muted fw-bold small text-uppercase" style="font-size:.68rem;letter-spacing:.06em">Payment Method</label>
+                    <select class="form-select mb-3" id="paymentMethod">
+                        <option value="Cash">💵 Cash</option>
+                        <option value="Card">💳 Card</option>
+                        <option value="Digital">📱 Digital Wallet</option>
+                    </select>
+                    <button class="btn btn-success btn-lg w-100 rounded-pill fw-bold" onclick="checkout()" style="padding:14px!important">
+                        <i class="fas fa-check-circle me-2"></i>Complete Sale
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-8">
+            <div class="card anim-up anim-d1" style="min-height:calc(100vh - 112px)">
+                <div class="card-header">
+                    <i class="fas fa-shopping-cart text-brand"></i> Current Cart
+                    <span class="badge bg-success rounded-pill ms-auto" id="cartItemCount">0 items</span>
+                </div>
+                <div class="card-body p-0">
+                    <div class="table-responsive" style="max-height:calc(100vh - 200px);overflow-y:auto">
+                        <table class="table table-hover" id="cartTable">
+                            <thead><tr><th class="ps-4">Product</th><th>Unit Price</th><th class="text-center">Qty</th><th class="text-end">Subtotal</th><th class="text-center pe-4">Action</th></tr></thead>
+                            <tbody id="cartBody">
+                                <tr><td colspan="5" class="text-center py-5 text-muted">
+                                    <i class="fas fa-barcode fa-3x mb-3 d-block" style="opacity:.15"></i>
+                                    <span style="font-size:.9rem">Scan a barcode to begin</span>
+                                </td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="receipt" class="print-only p-3">
+    <h2 class="text-center">SMART MART</h2>
+    <p class="text-center text-muted"><small>123 Smart St, Tech City</small></p><hr>
+    <p><strong>Date:</strong> <span id="r_date"></span></p>
+    <p><strong>Cashier:</strong> <span id="r_cashier"></span></p><hr>
+    <table class="table table-borderless table-sm w-100" id="r_items"></table><hr>
+    <h4 class="text-end">Total: $<span id="r_total"></span></h4>
+    <p class="mb-0"><strong>Payment:</strong> <span id="r_payment"></span></p>
+    <p class="mt-0 fw-bold" id="r_loyalty"></p><hr>
+    <p class="text-center mt-4">Thank you for shopping at Smart Mart!</p>
+</div>
+{% endblock %}
+{% block extra_js %}<script src="/static/js/cashier.js"></script>{% endblock %}

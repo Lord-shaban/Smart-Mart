@@ -1,0 +1,85 @@
+{% extends "base.html" %}
+{% block title %}Smart Mart — My Account{% endblock %}
+{% block body %}
+<nav class="navbar-main">
+    <a class="logo" href="/"><div class="logo-icon"><i class="fas fa-bolt"></i></div>Smart Mart<span class="logo-badge">Portal</span></a>
+    <div class="nav-links" id="navActions" style="display:none">
+        <a href="/store" class="nav-link-pill brand-fill"><i class="fas fa-bag-shopping"></i> Shop</a>
+        <button class="nav-link-pill" onclick="logout()"><i class="fas fa-right-from-bracket"></i> Logout</button>
+    </div>
+</nav>
+
+<!-- LOGIN -->
+<div class="auth-wrap" id="loginPanel">
+    <div class="auth-box anim-up">
+        <div class="avatar-ring"><i class="fas fa-fingerprint"></i></div>
+        <h4 class="fw-bold mb-1" style="font-size:1.2rem">Customer Portal</h4>
+        <p class="text-muted mb-4" style="font-size:.86rem">Enter your ID for personalized AI insights</p>
+        <input type="number" class="form-control form-control-lg mb-3" id="customerId" style="text-align:center;background:var(--bg);border:none;font-size:1.1rem" placeholder="ID (e.g. 35)">
+        <div id="loginError" class="alert alert-danger d-none p-2 small mb-3" style="border-radius:var(--r);font-size:.82rem">Customer not found. Try 1–100.</div>
+        <button class="btn btn-dark btn-lg w-100 rounded-pill fw-bold" onclick="login()" style="padding:13px!important">
+            Access Dashboard <i class="fas fa-arrow-right ms-2"></i>
+        </button>
+    </div>
+</div>
+
+<!-- PORTAL -->
+<div class="page-shell" id="portalPanel" style="display:none;padding-top:24px">
+    <div class="row g-4">
+        <div class="col-lg-4 col-md-5">
+            <div class="profile-card anim-up">
+                <div class="avatar-ring" style="width:68px;height:68px;font-size:1.5rem"><i class="fas fa-user"></i></div>
+                <h5 class="fw-bold mb-1" id="cName" style="font-size:1.05rem">Loading...</h5>
+                <div id="cTier" class="tier-pill tier-Gold"><i class="fas fa-star"></i> Gold</div>
+                <hr class="my-3" style="border-color:var(--border)">
+                <div style="background:var(--bg);border-radius:var(--r-lg);padding:18px">
+                    <p class="text-muted fw-bold mb-1 text-uppercase" style="font-size:.65rem;letter-spacing:.06em">Loyalty Balance</p>
+                    <h3 class="fw-bold mb-0 text-brand" style="font-size:1.6rem"><i class="fas fa-coins text-warning me-1"></i><span id="cPoints">0</span></h3>
+                </div>
+                <button class="btn btn-outline-dark btn-sm w-100 rounded-pill mt-3 fw-bold" onclick="openEditProfile()">
+                    <i class="fas fa-pen me-1"></i> Edit Profile
+                </button>
+            </div>
+        </div>
+        <div class="col-lg-8 col-md-7">
+            <div class="d-flex flex-column gap-4">
+                <div class="section-box anim-up anim-d1">
+                    <h5 class="section-head">
+                        <i class="fas fa-wand-magic-sparkles" style="color:var(--accent)"></i> Smart Suggestions
+                        <span class="badge bg-primary bg-opacity-10 text-primary border border-primary border-opacity-25 rounded-pill ms-auto" style="font-size:.65rem"><i class="fas fa-microchip me-1"></i>AI</span>
+                    </h5>
+                    <p class="text-muted mb-3" style="font-size:.86rem">Recommended by collaborative filtering based on your purchase patterns:</p>
+                    <div id="recommendationsList" class="d-flex flex-column gap-2"></div>
+                </div>
+                <div class="section-box anim-up anim-d2">
+                    <h5 class="section-head"><i class="fas fa-receipt" style="color:var(--tx3)"></i> Recent Orders</h5>
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead><tr><th>Date</th><th>Product</th><th class="text-center">Qty</th><th class="text-end">Total</th></tr></thead>
+                            <tbody id="historyTable"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- EDIT PROFILE MODAL -->
+<div class="modal fade" id="editProfileModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered"><div class="modal-content">
+        <div class="modal-header"><h5 class="modal-title fw-bold"><i class="fas fa-user-pen me-2 text-primary"></i>Edit Profile</h5><button type="button" class="btn-close" data-bs-dismiss="modal"></button></div>
+        <div class="modal-body">
+            <div class="row g-3">
+                <div class="col-12"><label class="form-label small fw-bold">Full Name</label><input type="text" class="form-control" id="ep_name"></div>
+                <div class="col-6"><label class="form-label small fw-bold">Phone</label><input type="text" class="form-control" id="ep_phone"></div>
+                <div class="col-6"><label class="form-label small fw-bold">Email</label><input type="email" class="form-control" id="ep_email"></div>
+            </div>
+            <div id="ep_error" class="alert alert-danger d-none mt-3 py-2 small"></div>
+            <div id="ep_success" class="alert alert-success d-none mt-3 py-2 small"></div>
+        </div>
+        <div class="modal-footer border-0"><button class="btn btn-dark rounded-pill fw-bold px-4" onclick="saveProfile()">Save Changes</button></div>
+    </div></div>
+</div>
+{% endblock %}
+{% block extra_js %}<script src="/static/js/customer.js"></script>{% endblock %}

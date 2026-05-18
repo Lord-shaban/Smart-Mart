@@ -1,4 +1,29 @@
-.venv/
+# ── Python ─────────────────────────────────────────────
 __pycache__/
-*.pyc
-.env
+*.py[cod]
+*.pyo
+*.egg-info/
+*.egg
+dist/
+build/
+
+# ── Virtual Environment ───────────────────────────────
+.venv/
+venv/
+env/
+
+# ── Instance (runtime data) ──────────────────────────
+instance/
+*.db
+
+# ── IDE ───────────────────────────────────────────────
+.vscode/
+.idea/
+*.swp
+*.swo
+.gemini/
+
+# ── OS ────────────────────────────────────────────────
+.DS_Store
+Thumbs.db
+desktop.ini
